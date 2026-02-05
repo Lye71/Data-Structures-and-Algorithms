@@ -77,3 +77,10 @@ List insertSorted(List L, int data){
     }
     return insertPos(L, data, i);
 }
+
+List display(List L){
+    int i;
+    for(i = 0; i < L.count; i++){
+        printf("%d " L.elem[i]);
+    }
+}
