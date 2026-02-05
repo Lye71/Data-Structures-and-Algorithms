@@ -5,17 +5,21 @@
 typedef struct {
     int elem[MAX];
     int count;
-} Etype, *Eprt;
+} Etype, *EPtr;
 
-void initialize(Eptr *L);
-void insertPos(Eptr L, int data, int position);
-void deletePos(Eptr L, int position);
-int locate(Eptr L, int data);
-void insertSorted(Eptr L, int data);
-void display(Eptr L);
-void makeNULL(Eptr L);
+void initialize(EPtr *L);
+void insertPos(EPtr L, int data, int position);
+void deletePos(EPtr L, int position);
+int locate(EPtr L, int data);
+void insertSorted(EPtr L, int data);
+void display(EPtr L);
+void makeNULL(EPtr L);
 
-void initialize(Eptr L){
+int main(){
+    return 0;
+}
+
+void initialize(EPtr L){
     L->count = 0;
 }
 
@@ -36,10 +40,54 @@ void insertPos(Eptr L, int data, int position){
     L->count++;  
 }
 
-void deletePos(Eptr L, int position){
+void deletePos(EPtr L, int position){
     if(position > L->count || position < 0){
         printf("Invalid position");
         return;
     }
-    
+    int i;
+    for(i = position; i < L->count; ++){
+        L->elem[i] = L->elem[i+1];
+    }
+    L->count--;
+}
+
+int locate(EPtr L, int data){
+    int i;
+    for(int i = 0; i < L->count; i++){
+        if(L->elem[i] == data){
+            return i;
+        }
+    }
+    return -1;
+}
+
+int retrieve(EPtr L, int position){
+    if(position > L->count || position < 0){
+        printf("Invalid position");
+        return;
+    }
+    return L->elem[position];
+}
+
+void insertSorted(EPtr L, int data){
+    if(L->count >= MAX){
+        printf("List is full!");
+        return;
+    }
+    int i;
+    for(i = 0; i < L->count && data > L->elem[i]; i++){}
+    insertPos(L, data, i);
+}
+
+void display(EPtr L){
+    int i;
+    printf("It contains: ");
+    for(i = 0; i < L->count; i++){
+        printf("%d ", L->elem[i]);
+    }
+}
+
+void makeNULL(EPtr L){
+    free(L);
 }
