@@ -13,6 +13,7 @@ void init(Stack *s){
     s->top = MAX;
 }
 
+//better to use if else better to not to use return in void
 void push(Stack* s, int value){
     if(isFull(s)){
         return;
