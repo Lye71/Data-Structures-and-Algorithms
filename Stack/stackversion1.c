@@ -5,12 +5,12 @@ typedef struct{
     int top;
 }Stack;
 
-void init(Stack **s);
+void init(Stack *s);
 void push(Stack* s, int value);
 void pop(Stack* s);
 
-void init(Stack **s){
-    (*s)->top = -1;
+void init(Stack *s){
+    s->top = -1;
 }
 
 void push(Stack* s, int value){
